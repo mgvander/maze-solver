@@ -1,4 +1,6 @@
-﻿using System;
+﻿/// Author: Michael VanderMyde
+
+using System;
 
 namespace cis237_assignment_2
 {
