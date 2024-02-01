@@ -18,6 +18,15 @@ namespace cis237_assignment_2
         public void SolveMaze(char[,] maze, int xStart, int yStart)
         {
             // Do work needed to use mazeTraversal recursive call and solve the maze.
+            if (!(maze[xStart, yStart] == '#'))
+            {
+
+            }
+            else
+            {
+
+            }
+
         }
 
 

@@ -15,25 +15,38 @@ namespace cis237_assignment_2
         static void Main(string[] args)
         {
             // Starting Coordinates.
-            const int X_START = 1;
+            const int X_START = 2;
             const int Y_START = 1;
 
             // The first maze that needs to be solved.
             // Note: You may want to make a smaller version to test and debug with.
             // You don't have to, but it might make your life easier.
+            //char[,] maze1 =
+            //{ { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' },
+            //{ '#', '.', '.', '.', '#', '.', '.', '.', '.', '.', '.', '#' },
+            //{ '#', '.', '#', '.', '#', '.', '#', '#', '#', '#', '.', '#' },
+            //{ '#', '#', '#', '.', '#', '.', '.', '.', '.', '#', '.', '#' },
+            //{ '#', '.', '.', '.', '.', '#', '#', '#', '.', '#', '.', '.' },
+            //{ '#', '#', '#', '#', '.', '#', '.', '#', '.', '#', '.', '#' },
+            //{ '#', '.', '.', '#', '.', '#', '.', '#', '.', '#', '.', '#' },
+            //{ '#', '#', '.', '#', '.', '#', '.', '#', '.', '#', '.', '#' },
+            //{ '#', '.', '.', '.', '.', '.', '.', '.', '.', '#', '.', '#' },
+            //{ '#', '#', '#', '#', '#', '#', '.', '#', '#', '#', '.', '#' },
+            //{ '#', '.', '.', '.', '.', '.', '.', '#', '.', '.', '.', '#' },
+            //{ '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' } };
+
+            // - y y y +
+            // x . . .
+            // x . . .
+            // x . . .
+            // +
+            // 
+            // maze1[x,y]
+            //
             char[,] maze1 =
-            { { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' },
-            { '#', '.', '.', '.', '#', '.', '.', '.', '.', '.', '.', '#' },
-            { '#', '.', '#', '.', '#', '.', '#', '#', '#', '#', '.', '#' },
-            { '#', '#', '#', '.', '#', '.', '.', '.', '.', '#', '.', '#' },
-            { '#', '.', '.', '.', '.', '#', '#', '#', '.', '#', '.', '.' },
-            { '#', '#', '#', '#', '.', '#', '.', '#', '.', '#', '.', '#' },
-            { '#', '.', '.', '#', '.', '#', '.', '#', '.', '#', '.', '#' },
-            { '#', '#', '.', '#', '.', '#', '.', '#', '.', '#', '.', '#' },
-            { '#', '.', '.', '.', '.', '.', '.', '.', '.', '#', '.', '#' },
-            { '#', '#', '#', '#', '#', '#', '.', '#', '#', '#', '.', '#' },
-            { '#', '.', '.', '.', '.', '.', '.', '#', '.', '.', '.', '#' },
-            { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' } };
+                { { '#', '#', '#' },
+                { '#', '.', '#' },
+                { '#', '.', '#' } };
 
             // Create a new instance of a mazeSolver.
             MazeSolver mazeSolver = new MazeSolver();
@@ -42,7 +55,7 @@ namespace cis237_assignment_2
             char[,] maze2 = transposeMaze(maze1);
 
             // Solve the original maze.
-            mazeSolver.SolveMaze(maze1, X_START, Y_START);
+            mazeSolver.SolveMaze(maze1, X_START, Y_START);            
 
             // Solve the transposed maze.
             mazeSolver.SolveMaze(maze2, X_START, Y_START);
@@ -71,7 +84,24 @@ namespace cis237_assignment_2
         static char[,] transposeMaze(char[,] mazeToTranspose)
         {
             //Write code her to create a transposed maze.
-            return new char[1, 1];
+
+            // https://www.w3schools.com/cs/cs_arrays_multi.php
+            char[,] transposeChars = new char[mazeToTranspose.GetLength(1), mazeToTranspose.GetLength(0)];
+
+            //
+            for (int x = 0; x < mazeToTranspose.GetLength(0); ++x)
+            {
+                //
+                for (int y = 0; y < mazeToTranspose.GetLength(1); ++y)
+                {
+                    //
+                    transposeChars[y, x] = mazeToTranspose[x, y];
+                }
+            }
+
+            //
+            return transposeChars;
+
         }
     }
 }
