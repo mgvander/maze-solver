@@ -15,7 +15,7 @@ namespace cis237_assignment_2
         static void Main(string[] args)
         {
             // Starting Coordinates.
-            const int X_START = 2;
+            const int X_START = 1;
             const int Y_START = 1;
 
             // The first maze that needs to be solved.
@@ -46,62 +46,66 @@ namespace cis237_assignment_2
             char[,] maze1 =
                 { { '#', '#', '#' },
                 { '#', '.', '#' },
-                { '#', '.', '#' } };
+                { '#', '.', '#' } };            
 
             // Create a new instance of a mazeSolver.
-            MazeSolver mazeSolver = new MazeSolver();
+            MazeSolver mazeSolver1 = new MazeSolver(maze1, X_START, Y_START);
 
             // Create the second maze by transposing the first maze
-            char[,] maze2 = transposeMaze(maze1);
+            char[,] maze2 = mazeSolver1.TransposeMaze(maze1);
 
             // Solve the original maze.
-            mazeSolver.SolveMaze(maze1, X_START, Y_START);            
+            mazeSolver1.SolveMaze();
+
+            // Create a new instance of a mazeSolver.
+            MazeSolver mazeSolver2 = new MazeSolver(maze2, X_START, Y_START);
 
             // Solve the transposed maze.
-            mazeSolver.SolveMaze(maze2, X_START, Y_START);
-
+            mazeSolver2.SolveMaze();
+            
         }
 
-        /// <summary>
-        /// This method will take in a 2 dimensional char array and return
-        /// a char array maze that is flipped along the diagonal, or in mathematical
-        /// terms, transposed.
-        /// ie. if the array looks like 1, 2, 3
-        ///                             4, 5, 6
-        ///                             7, 8, 9
-        /// The returned result will be:
-        ///                             1, 4, 7
-        ///                             2, 5, 8
-        ///                             3, 6, 9
-        /// The current return statement is just a placeholder so the program
-        /// doesn't complain about no return value.
-        /// 
-        /// It is important that you return a "new" char array as the transposed maze.
-        /// If you do not, you could end up only solving the transposed maze.
-        /// </summary>
-        /// <param name="mazeToTranspose"></param>
-        /// <returns>transposedMaze</returns>
-        static char[,] transposeMaze(char[,] mazeToTranspose)
-        {
-            //Write code her to create a transposed maze.
+        ///// <summary>
+        ///// This method will take in a 2 dimensional char array and return
+        ///// a char array maze that is flipped along the diagonal, or in mathematical
+        ///// terms, transposed.
+        ///// ie. if the array looks like 1, 2, 3
+        /////                             4, 5, 6
+        /////                             7, 8, 9
+        ///// The returned result will be:
+        /////                             1, 4, 7
+        /////                             2, 5, 8
+        /////                             3, 6, 9
+        ///// The current return statement is just a placeholder so the program
+        ///// doesn't complain about no return value.
+        ///// 
+        ///// It is important that you return a "new" char array as the transposed maze.
+        ///// If you do not, you could end up only solving the transposed maze.
+        ///// </summary>
+        ///// <param name="mazeToTranspose"></param>
+        ///// <returns>transposedMaze</returns>
+        //static char[,] transposeMaze(char[,] mazeToTranspose)
+        //{
+        //    //Write code her to create a transposed maze.
 
-            // https://www.w3schools.com/cs/cs_arrays_multi.php
-            char[,] transposeChars = new char[mazeToTranspose.GetLength(1), mazeToTranspose.GetLength(0)];
+        //    // https://www.w3schools.com/cs/cs_arrays_multi.php
+        //    char[,] transposeChars = new char[mazeToTranspose.GetLength(1), mazeToTranspose.GetLength(0)];
 
-            //
-            for (int x = 0; x < mazeToTranspose.GetLength(0); ++x)
-            {
-                //
-                for (int y = 0; y < mazeToTranspose.GetLength(1); ++y)
-                {
-                    //
-                    transposeChars[y, x] = mazeToTranspose[x, y];
-                }
-            }
+        //    //
+        //    for (int x = 0; x < mazeToTranspose.GetLength(0); ++x)
+        //    {
+        //        //
+        //        for (int y = 0; y < mazeToTranspose.GetLength(1); ++y)
+        //        {
+        //            //
+        //            transposeChars[y, x] = mazeToTranspose[x, y];
 
-            //
-            return transposeChars;
+        //        }
+        //    }
 
-        }
+        //    //
+        //    return transposeChars;
+
+        //}
     }
 }
