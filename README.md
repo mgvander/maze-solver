@@ -59,4 +59,5 @@ None
 
 ## Known Problems, Issues, And/Or Errors in the Program
 
-None
+Must still properly document all working code.
+Should test program's interaction with loops with a maze.
