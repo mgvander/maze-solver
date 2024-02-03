@@ -14,6 +14,7 @@ namespace cis237_assignment_2
         private char[,] _maze;
         private int _xStart;
         private int _yStart;
+        private bool _exitFound;
         
         public MazeSolver(char[,] passMaze, int xStart, int yStart)
         {
@@ -33,7 +34,16 @@ namespace cis237_assignment_2
             if (!(_maze[_xStart, _yStart] == '#'))
             {
                 //
+                Console.WriteLine("Press <Enter> to progress");
+                Console.WriteLine();
+
+                //
                 this.MazeTraversal(_xStart, _yStart);
+
+                //
+                Console.WriteLine("Maze Solved!");
+                Console.WriteLine("============");
+                Console.WriteLine();
 
             }
             else
@@ -58,29 +68,80 @@ namespace cis237_assignment_2
             // Implement maze traversal recursive call
 
             //
-            if (xCoord <= 0 || xCoord >= (_maze.GetLength(0) - 1) || yCoord <= 0 || (yCoord >= _maze.GetLength(1)))
+            if (!_exitFound)
             {
                 //
-                _maze[xCoord, yCoord] = 'X';
+                Console.Write(this.DisplayMaze());
+                Console.ReadLine();
+
+                // Base Case: The Exit will be '.' and will be at one of the four boundaries of the 2D-array
+                if ((_maze[xCoord, yCoord] == '.') &&
+                    (xCoord <= 0 || xCoord >= (_maze.GetLength(0) - 1) || yCoord <= 0 || (yCoord >= _maze.GetLength(1) - 1)))
+                {
+                    //
+                    _maze[xCoord, yCoord] = 'X';
+
+                    //
+                    Console.Write(this.DisplayMaze());
+                    Console.ReadLine();
+
+                    //
+                    _exitFound = true;
+
+                }
+                //
+                else
+                {
+                    //
+                    _maze[xCoord, yCoord] = 'X';
+
+                    //
+                    if (_maze[xCoord + 1, yCoord] == '.')
+                    {
+                        // Right
+                        MazeTraversal(xCoord + 1, yCoord);
+
+                    }
+
+                    //
+                    if (_maze[xCoord, yCoord + 1] == '.')
+                    {
+                        // Up
+                        MazeTraversal(xCoord, yCoord + 1);
+
+                    }
+
+                    //
+                    if (_maze[xCoord - 1, yCoord] == '.')
+                    {
+                        // Left
+                        MazeTraversal(xCoord - 1, yCoord);
+
+                    }
+
+                    //
+                    if (_maze[xCoord, yCoord - 1] == '.')
+                    {
+                        // Down
+                        MazeTraversal(xCoord, yCoord - 1);
+
+                    }
+
+                    //
+                    if (!_exitFound)
+                    {
+                        //
+                        Console.Write(this.DisplayMaze());
+                        Console.ReadLine();
+
+                        //
+                        _maze[xCoord, yCoord] = '0';
+
+                    }                    
+
+                }
 
             }
-            //
-            else
-            {
-
-            }
-
-            // Right
-            MazeTraversal(xCoord + 1, yCoord);
-            
-            // Up
-            MazeTraversal(xCoord, yCoord + 1);
-
-            // Left
-            MazeTraversal(xCoord - 1, yCoord);
-
-            // Down
-            MazeTraversal(xCoord, yCoord - 1);            
 
         }
 
@@ -120,10 +181,35 @@ namespace cis237_assignment_2
                     transposeChars[y, x] = mazeToTranspose[x, y];
 
                 }
+
             }
 
             //
             return transposeChars;
+
+        }
+
+        private string DisplayMaze()
+        {
+            //
+            string outputMazeString = "";
+
+            //
+            for (int y = (_maze.GetLength(1) - 1); y >= 0; --y)
+            {
+                //
+                for (int x = 0; x < _maze.GetLength(0); ++x)
+                {
+                    outputMazeString += _maze[x, y].ToString();
+                }
+
+                //
+                outputMazeString += Environment.NewLine;
+
+            }
+
+            //
+            return outputMazeString;
 
         }
 
