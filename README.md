@@ -55,9 +55,9 @@ Don't forget that you must have a base case for your recursive method or you wil
 
 ## Outside Resources Used
 
-None
+Code used for moving through 2D arrays was reference, (https://www.w3schools.com/cs/cs_arrays_multi.php), as a source
 
 ## Known Problems, Issues, And/Or Errors in the Program
 
-Must still properly document all working code.
-Should test program's interaction with loops with a maze.
+Should run tests with the program interacting with loops within a maze.
+Should run tests with the program interacting mazes with no exits.
