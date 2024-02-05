@@ -1,4 +1,6 @@
 ﻿/// Author: Michael VanderMyde
+/// Course: CIS-237
+/// Assignment 2
 
 using System;
 
@@ -56,21 +58,17 @@ namespace cis237_assignment_2
             char[,] maze2 = mazeSolver1.TransposeMaze(maze1);
 
             // Solve the original maze.
-            mazeSolver1.SolveMaze();
-
-            ////
-            //mazeSolver1.ToString();
+            mazeSolver1.SolveMaze();            
 
             // Create a new instance of a mazeSolver.
             MazeSolver mazeSolver2 = new MazeSolver(maze2, X_START, Y_START);
 
             // Solve the transposed maze.
             mazeSolver2.SolveMaze();
-
-            ////
-            //mazeSolver2.ToString();
-
+            
         }
+
+        //
 
         ///// <summary>
         ///// This method will take in a 2 dimensional char array and return
